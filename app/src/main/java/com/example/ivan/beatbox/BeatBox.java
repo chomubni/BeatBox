@@ -6,6 +6,8 @@ import android.provider.ContactsContract;
 import android.util.Log;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by ivan on 9/5/17.
@@ -16,6 +18,7 @@ public class BeatBox {
     private static final String SOUNDS_FOLDER = "sample_sounds";
 
     private AssetManager mAssets;
+    private List<Sound> mSounds = new ArrayList<>();
 
     public BeatBox(Context context){
         mAssets = context.getAssets();
@@ -23,7 +26,7 @@ public class BeatBox {
     }
 
     private void loadSounds(){
-        String[] soundsName;
+        String[] soundsName = null;
         try {
             soundsName = mAssets.list(SOUNDS_FOLDER);
             Log.i(TAG,"Found " + soundsName.length + " sounds");
@@ -31,5 +34,16 @@ public class BeatBox {
         catch (IOException ioe){
             Log.e(TAG,"Could not list assets",ioe);
         }
+        if(soundsName!=null) {
+            for (String fileName : soundsName) {
+                String assetPath = SOUNDS_FOLDER + "/" + fileName;
+                Sound sound = new Sound(assetPath);
+                mSounds.add(sound);
+            }
+        }
+    }
+
+    public List<Sound> getSounds(){
+        return mSounds;
     }
 }
