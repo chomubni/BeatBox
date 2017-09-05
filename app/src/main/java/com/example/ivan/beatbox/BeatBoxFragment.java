@@ -32,9 +32,28 @@ public class BeatBoxFragment extends Fragment {
 
         private Button mButton;
         public SoundHolder(LayoutInflater inflater, ViewGroup container) {
-            super(inflater.inflate((R.layout.list_item_sound,container,false));
+            super(inflater.inflate((R.layout.list_item_sound),container,false));
             mButton = itemView.findViewById(R.id.list_item_sound_button);
         }
 
+    }
+
+    private class SoundAdapter extends RecyclerView.Adapter<SoundHolder>{
+
+        @Override
+        public SoundHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            LayoutInflater inflater = LayoutInflater.from(getActivity());
+            return new SoundHolder(inflater,parent);
+        }
+
+        @Override
+        public void onBindViewHolder(SoundHolder holder, int position) {
+
+        }
+
+        @Override
+        public int getItemCount() {
+            return 0;
+        }
     }
 }
