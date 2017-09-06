@@ -1,6 +1,7 @@
 package com.example.ivan.beatbox;
 
 import android.content.Context;
+import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.media.AudioManager;
 import android.media.SoundPool;
@@ -41,11 +42,22 @@ public class BeatBox {
         }
         if(soundsName!=null) {
             for (String fileName : soundsName) {
+                try{
                 String assetPath = SOUNDS_FOLDER + "/" + fileName;
                 Sound sound = new Sound(assetPath);
-                mSounds.add(sound);
+                load(sound);
+                mSounds.add(sound);}
+                catch (IOException ioe){
+                    Log.e(TAG, "Couldn't load sound " + fileName,ioe);
+                }
             }
         }
+    }
+
+    private void load(Sound sound) throws IOException{
+        AssetFileDescriptor afd = mAssets.openFd(sound.getAssetsPath());
+        int soundId = mSoundPool.load(afd,1);
+        sound.setSoundId(soundId);
     }
 
     public List<Sound> getSounds(){

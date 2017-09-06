@@ -9,7 +9,7 @@ import android.media.SoundPool;
 public class Sound {
     private String mAssetsPath;
     private String mName;
-    private SoundPool mSoundId;
+    private Integer mSoundId;
 
     public Sound(String assetsPath) {
         mAssetsPath = assetsPath;
@@ -26,11 +26,11 @@ public class Sound {
         return mName;
     }
 
-    public SoundPool getSoundId() {
+    public Integer getSoundId() {
         return mSoundId;
     }
 
-    public void setSoundId(SoundPool soundId) {
+    public void setSoundId(Integer soundId) {
         mSoundId = soundId;
     }
 }
