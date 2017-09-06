@@ -1,5 +1,7 @@
 package com.example.ivan.beatbox;
 
+import android.media.SoundPool;
+
 /**
  * Created by ivan on 9/5/17.
  */
@@ -7,6 +9,7 @@ package com.example.ivan.beatbox;
 public class Sound {
     private String mAssetsPath;
     private String mName;
+    private SoundPool mSoundId;
 
     public Sound(String assetsPath) {
         mAssetsPath = assetsPath;
@@ -21,5 +24,13 @@ public class Sound {
 
     public String getName() {
         return mName;
+    }
+
+    public SoundPool getSoundId() {
+        return mSoundId;
+    }
+
+    public void setSoundId(SoundPool soundId) {
+        mSoundId = soundId;
     }
 }
